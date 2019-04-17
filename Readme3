@@ -1,0 +1,12 @@
+As we found out that the most disk consuming folder is 
+/usr/src.change the directory to
+
+1	 cd /usr/src
+2  	 ls
+You will see something called “linux-headers-3.2.0-54/“
+Take a close look at the folders named linux-headers-*. These are the headers from all your linux images that you have installed. If you have too many of them, they will take up A LOT of space and inodes. You only need to keep the latest one you boot from.
+Let's say you have an older kernel, eg. 3.2.0-53. To remove it, type:
+3.sudo apt-get remove --purge linux-image-3.2.0-53-generic linux-headers-3.2.0-53 linux-headers-3.2.0-53-generic
+for each one of them.
+If all of the above fail, then try to delete the OLDER KERNEL headers' folders manually:
+4.sudo rm -rf /usr/src/linux-headers-3.2.0-53{,-generic}

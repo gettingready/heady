@@ -1,0 +1,17 @@
+Too many open files error mean that your JVM is not able to open any new file for processing because of the ulimit constraints on the box
+
+ulimit is and being set per userid, so please switch to the user in which weblogic processes are running. Let’s say weblogic is the username
+
+Now execute the following command for the weblogic user account
+“ulimit -a” (without quotes)
+
+Check how many open files your useracount is having
+
+/usr/sbin/lsof -u <username> | wc -l
+
+To increase the open file limit for the user account (weblogicusr) you can perform the following configuration changes in the server
+
+Add the following lines in the end of /etc/security/limits.conf file
+
+weblogicusr soft nofile 9384
+weblogicusr hard nofile 9384
